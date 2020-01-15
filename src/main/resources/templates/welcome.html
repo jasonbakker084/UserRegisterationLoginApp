@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:layout="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
+    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.4.1/css/all.css}"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{css/wheel.css}">
+    <link rel="stylesheet" th:href="@{html5-simple-date-input-polyfill.css}"/>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{https://use.fontawesome.com/releases/v5.4.1/css/all.css}"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{css/coffeelibrary.css}"/>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{./images/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{./images/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{./images/favicon-16x16.png}">
+    <link rel="icon" type="image/png" th:href="@{/static/images/favicon.ico}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152601123-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-152601123-1');
+    </script>
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Flavour Wheels App</title>
+</head>
+
+<body>
+<div th:fragment="navbar">
+    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand mb-0 h1" href="/"><img th:src="@{./images/transp_android-chrome-192x192.png}"
+                                                      width="30" height="30" class="d-inline-block align-top" alt="">Your Application
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Nav1
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item">Dropdown1</a>
+                        <a class="dropdown-item">Dropdown2</a>
+                        <a class="dropdown-item">Dropdown3</a>
+                        <a class="dropdown-item">Dropdown4</a>
+                        <a class="dropdown-item">Dropdown5</a>
+                        <!--                            <div class="dropdown-divider"></div>-->
+                        <!--                            <a class="dropdown-item" href="#">Something else here</a>-->
+                    </div>
+                </li>
+                <!--                    <li class="nav-item">-->
+                <!--                        <a class="nav-link" href="coffeewheel.html" th:href="@{/coffeewheel}">Coffee</a>-->
+                <!--                    </li>-->
+                <!--                    <li class="nav-item">-->
+                <!--                        <a class="nav-link" href="winewheel.html" th:href="@{/winewheel}">Wine</a>-->
+                <!--                    </li>-->
+                <li class="nav-item">
+                    <a class="nav-link">Nav2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+            <!--                <form class="nav-item">-->
+            <!--                    <a class="nav-link">Welcome <span sec:authentication="principal.userName">User</span></a>-->
+            <!--                </form>-->
+        </div>
+    </nav>
+</div>
+<div class="main">
+    <div layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12"></div>
+                <div class="form_input col-xl-4 offset-xl-1 col-lg-5 col-md-12 col-sm-12 col-xs-12"
+                     style="background-color: #615d5c26;">
+                    <div class="row">
+                        <div class="col">
+                            <div th:if="${param.successcoffee}">
+                                <div class="alert alert-info">Info saved!</div>
+                            </div>
+                            <h2>Database input:</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form th:action="@{/add}" th:object="${coffees}" method="POST"
+                                  enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput">Name:</label>
+                                    <input type="text" name="coffeeName" class="form-control" id="coffeeName">
+                                    <input type="hidden" id="flavorsCoffee" class="form-control" name="flavorsCoffee">
+                                </div>
+                                <div class="form-group">
+                                    <label for="formGroupExampleInput2">Address:</label>
+                                    <input type="text" name="roaster" class="form-control" id="roaster">
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6 form-group">
+                                        <label for="formGroupExampleInput2">Info1:</label>
+                                        <input type="date" name="roastDate" class="form-control"
+                                               value="Pick a Roast date" placeholder="Pick a Roast date"
+                                               id="roastDate">
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="exampleSelect1">Info2:</label>
+                                        <select class="form-control" id="roastColor" name="roastColor">
+                                            <option value="" selected>Select info2</option>
+                                            <option>Option1</option>
+                                            <option>Option2</option>
+                                            <option>Option3</option>
+                                            <option>Option4</option>
+                                            <option>Option5</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="exampleSelect2">Input method:</label>
+                                        <select class="form-control" name="tastingMethod" id="tastingMethod">
+                                            <option value="" selected>Select method</option>
+                                            <option>Method1</option>
+                                            <option>Method2</option>
+                                            <option>Method3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        <label for="exampleSelect2">Info3:</label>
+                                        <select class="form-control" name="beanType" id="beanType">
+                                            <option value="" selected>Select info3</option>
+                                            <option>Option1</option>
+                                            <option>Option2</option>
+                                            <option>Option3</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="exampleSelect2">Info4:</label>
+                                        <select class="form-control" name="processingMethod" id="processingMethod">
+                                            <option value="" selected>Select info4</option>
+                                            <option>Option1</option>
+                                            <option>Option2</option>
+                                            <option>Option3</option>
+                                            <option>Option4</option>
+                                            <option>Option5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleTextarea">Extra info:</label>
+                                    <textarea class="form-control" name="userNotes" id="userNotes"
+                                              rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="file" class="form-control-file" id="" aria-describedby="fileHelp"
+                                           name="file"
+                                           accept="image/png, image/jpeg, image/gif, image/apng, image/svg, image/bmp">
+                                </div>
+                                <button type="submit" value="Submit" class="btn btn-primary">Save</button>
+                                <button id="clearPage" type="button" class="btn btn-primary">Clear</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{https://code.jquery.com/jquery-3.4.1.slim.min.js}"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js}"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js}"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+
+
+    <script th:src="@{./js/html5-simple-date-input-polyfill.min.js}"></script>
+    <script>
+        $('#clearPage').click(function () {
+            location.reload();
+        });
+    </script>
+
+</body>
+
+</html>

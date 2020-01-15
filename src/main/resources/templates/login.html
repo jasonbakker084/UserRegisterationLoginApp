@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
+    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{css/LoginRegister.css}">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{./images/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{./images/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{./images/favicon-16x16.png}">
+    <link rel="icon" type="image/png" th:href="@{/static/images/favicon.ico}">
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">User Login</title>
+    <script th:src="@{https://code.jquery.com/jquery-3.4.1.slim.min.js}"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div class="container-fluid h-100">
+    <div class="row justify-content-center h-100">
+        <div class="col-lg-5 col-md-6 col-sm-12 my-auto">
+            <h1>User Login Page</h1>
+            <h3>Log in</h3>
+            <form th:action="@{/login}" th:object="${user}" method="post">
+                <div th:if="${param.error}">
+                    <div class="alert alert-danger">Invalid username or
+                        password.
+                    </div>
+                </div>
+                <div th:if="${param.logout}">
+                    <div class="alert alert-info">You have been logged out.</div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Email</label>: <input type="text"
+                                                                id="username" name="username" class="form-control"
+                                                                autofocus="autofocus" placeholder="Email"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>: <input type="password"
+                                                                   id="password" name="password" class="form-control"
+                                                                   placeholder="Password"/>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="remember-me"> Remember Me
+                    </label>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="submit" name="login-submit" id="login-submit"
+                                   class="form-control btn btn-primary" value="Log In"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+						<span>New user? <a href="/" th:href="@{/registration}">Register
+								here</a></span><br>
+                    <span>Forgot password? <a href="/forgot-password">Click
+                        here</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js}"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js}"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
